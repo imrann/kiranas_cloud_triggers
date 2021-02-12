@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents { 
+    match /users/{userID}/{document=**}{
+       allow read,delete,write: if request.auth != null || request.auth.uid == userID;
+    }
+  }
+  match /databases/{database}/documents { 
+    match /orders/{userID}/{document=**}{
+       allow read,delete,write: if request.auth != null && request.auth.uid == userID;
+    }
+  }
+//    match /databases/{database}/documents { 
+//     match /products/{userID}/{document=**}{
+//        allow read: if request.auth != null && request.auth.uid == userID;
+//        allow delete,write: if request.auth != null && request.auth.uid == userID && get(/databases/$(database)/documents/admin/$(request.auth.uid)).data.userPhone == request.auth.token.phone_number;
+
+//     }
+//   }
+//   match /databases/{database}/documents { 
+//     match /transactions/{userID}/{document=**}{
+//      	 allow read,delete,write: if request.auth != null && request.auth.uid == userID && get(/databases/$(database)/documents/AdminUsers/$(request.auth.uid)).data.userPhone == request.auth.token.phone_number;
+
+//     }
+//   }
+}
+
+ 
