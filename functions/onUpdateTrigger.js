@@ -45,7 +45,7 @@ exports.onUpdateOrder = functions.firestore.document('orders/{id}').onUpdate(asy
                 payload = getPayload("Order cancelled by owners at KIRANAS ",
                             'Cancelled on :' + updatedOrder['oUpdateDate'] + "\n" + 'Order ID :' + updatedOrder['orderID'],
                     'https://firebasestorage.googleapis.com/v0/b/kiranas-c082f.appspot.com/o/Products%2Fkiranas_cancelorder_fcm_image.png?alt=media&token=37f6eefa-4b82-472c-a24d-3bc880d2ca95',
-                2);
+                "2");
                 
                 break;
             case "Cancelled by user":
@@ -54,7 +54,7 @@ exports.onUpdateOrder = functions.firestore.document('orders/{id}').onUpdate(asy
                 payload = getPayload("Order cancelled by customer " + updatedOrder['oUserName'] + " (" +  updatedOrder['oUserPhone'] + ") ",
                             'Cancelled on :' +updatedOrder['oUpdateDate'] +"\n"+ 'Order ID :' +updatedOrder['orderID'],
                     'https://firebasestorage.googleapis.com/v0/b/kiranas-c082f.appspot.com/o/Products%2Fkiranas_cancelorder_fcm_image.png?alt=media&token=37f6eefa-4b82-472c-a24d-3bc880d2ca95',
-                2);
+                "2");
                 
                 break;
             case "Accepted":
@@ -62,7 +62,7 @@ exports.onUpdateOrder = functions.firestore.document('orders/{id}').onUpdate(asy
                 payload = getPayload("Order accepted by owners at KIRANAS ",
                             'Accepted on :' +updatedOrder['oUpdateDate'] +"\n"+ 'Order ID :' +updatedOrder['orderID'],
                     'https://firebasestorage.googleapis.com/v0/b/kiranas-c082f.appspot.com/o/Products%2Fkiranas_acceptedorder_fcm_image.PNG?alt=media&token=fd9c0812-8419-4afc-87b0-ea2b8a6145be',
-                0);
+                "0");
 
                 
                 break;
@@ -71,7 +71,7 @@ exports.onUpdateOrder = functions.firestore.document('orders/{id}').onUpdate(asy
                 payload = getPayload("Order out for delivery by owners ",
                             'Out for Delivery on :' +updatedOrder['oUpdateDate'] +"\n"+ 'Order ID :' +updatedOrder['orderID'],
                     'https://firebasestorage.googleapis.com/v0/b/kiranas-c082f.appspot.com/o/Products%2Fkiranas_outfordeliverorder_fcm_image.png?alt=media&token=8d3959b9-687a-4146-9e26-f1132ff7d18b',
-                0);
+                "0");
                 
                 break;
             case "Delivered":
@@ -79,7 +79,7 @@ exports.onUpdateOrder = functions.firestore.document('orders/{id}').onUpdate(asy
                 payload = getPayload("Order delivered by owners",
                             'Delivered on :' +updatedOrder['oUpdateDate'] +"\n"+ 'Order ID :' +updatedOrder['orderID'],
                     'https://firebasestorage.googleapis.com/v0/b/kiranas-c082f.appspot.com/o/Products%2Fkiranas_deliveredorder_fcm_image.png?alt=media&token=e1e88433-bc22-43e6-aec4-210a4e94113c',
-                      1);
+                      "1");
                 
                     break;
         

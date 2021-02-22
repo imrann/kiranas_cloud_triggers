@@ -50,7 +50,7 @@ exports.onNewOrder = functions.firestore.document('orders/{id}').onCreate(async 
              
 		},
 		data: {
-            message: 0,
+            message: "0",
             click_action: 'FLUTTER_NOTIFICATION_CLICK',
             screen: "OrdersPage",
             title:  "New order placed from " + newCreatedOrder['oUserName'] + " (" +  newCreatedOrder['oUserPhone'] + ") ",
