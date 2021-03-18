@@ -5,10 +5,10 @@ const admin = require('firebase-admin');
 
 var newCreatedOrder;
 
-
-
+var dateObject;
+var humanDateFormat;
+     
  
-
 exports.onNewOrder = functions.firestore.document('orders/{id}').onCreate(async (snapshot, context) => {
 	
 
@@ -18,6 +18,9 @@ exports.onNewOrder = functions.firestore.document('orders/{id}').onCreate(async 
     }
     
 	newCreatedOrder = snapshot.data();
+	dateObject = new Date(newCreatedOrder['oDop']);
+	dateObject.setMinutes( dateObject.getMinutes() + 330 );
+	humanDateFormat = dateObject.toLocaleString();
     var ownerTokens = [];
     var productName = [];
     var productQty = [];
@@ -42,8 +45,8 @@ exports.onNewOrder = functions.firestore.document('orders/{id}').onCreate(async 
  
  	var payload = {
 		notification: {
-			title: "New order placed from " + newCreatedOrder['oUserName'] + " (" +  newCreatedOrder['oUserPhone'] + ") ",
-              body:  'Order Placed on :' +newCreatedOrder['oDop'] ,
+			title: "New order placed from " + newCreatedOrder['oUserName'],
+              body:  'Order Placed on :' + humanDateFormat ,
               sound: 'default',
               image:'https://firebasestorage.googleapis.com/v0/b/kiranas-c082f.appspot.com/o/Products%2Fkiranas_neworder_fcm_image.PNG?alt=media&token=879dd670-f8d5-4eb7-b2d7-fc1c952bd3f1',
               
@@ -54,7 +57,7 @@ exports.onNewOrder = functions.firestore.document('orders/{id}').onCreate(async 
             click_action: 'FLUTTER_NOTIFICATION_CLICK',
             screen: "OrdersPage",
             title:  "New order placed from " + newCreatedOrder['oUserName'] + " (" +  newCreatedOrder['oUserPhone'] + ") ",
-            body:  'Order Placed on :' +newCreatedOrder['oDop'] ,
+            body:  'Order Placed on :' +humanDateFormat,
             sound: 'default',
             image:'https://firebasestorage.googleapis.com/v0/b/kiranas-c082f.appspot.com/o/Products%2Fkiranas_neworder_fcm_image.PNG?alt=media&token=879dd670-f8d5-4eb7-b2d7-fc1c952bd3f1',
 			  
